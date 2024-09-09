@@ -13,4 +13,13 @@ class Customer extends Model
     public function sales(): HasMany{
         return $this->hasMany(Sale::class);
     }
+
+    public function setNameAttribute($value){
+        $this->attributes['name'] = strtolower($value);
+    }
+
+    public function getNameAttribute($value){
+        return ucwords($value);
+    }
+
 }

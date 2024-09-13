@@ -29,6 +29,7 @@ class VehicleResource extends Resource
                 Forms\Components\DatePicker::make('year')->maxDate(now())->required()->label('Año'),
                 Forms\Components\TextInput::make('quantity')->numeric()->required()->label('Cantidad'),
                 Forms\Components\TextInput::make('value')->required()->numeric()->label('Precio'),
+                Forms\Components\FileUpload::make('image')->image()->label('Imagen')->directory('images')->required(),
             ]);
     }
 
@@ -41,6 +42,7 @@ class VehicleResource extends Resource
                 Tables\Columns\TextColumn::make('model')->label('Modelo'),
                 Tables\Columns\TextColumn::make('year')->label('Año'),
                 Tables\Columns\TextColumn::make('quantity')->label('Cantidad'),
+                Tables\Columns\ImageColumn::make('image')->label('Imagen'),
                 Tables\Columns\TextColumn::make('value')->label('Precio'),
                 ])
             ->filters([
@@ -70,5 +72,10 @@ class VehicleResource extends Resource
             'create' => Pages\CreateVehicle::route('/create'),
             'edit' => Pages\EditVehicle::route('/{record}/edit'),
         ];
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('Vehiculos');
     }
 }

@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\sallerController;
 
-Route::get('/', function () {
-    return view('welcome');
+Route::prefix('login')->group(function () {
+    Route::get('/', [sallerController::class, 'index'])->name('login');
+    Route::post('/', [sallerController::class, 'login'])->name('logiar');
 });

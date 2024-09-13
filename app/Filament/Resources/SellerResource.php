@@ -69,4 +69,9 @@ class SellerResource extends Resource
             'edit' => Pages\EditSeller::route('/{record}/edit'),
         ];
     }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('Vendedores');
+    }
 }

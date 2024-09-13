@@ -13,7 +13,13 @@ class ListCustomers extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()->label('Crear cliente'),
         ];
     }
+
+    public function getTitle(): string
+    {
+        return __('Lista de clientes');
+    }
 }
+

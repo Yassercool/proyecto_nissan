@@ -32,12 +32,18 @@ class SaleResource extends Resource
         return $table
             ->columns([
                 //
+                Tables\Columns\TextColumn::make('customer.name')->label('Comprador'),
+                Tables\Columns\TextColumn::make('seller.name')->label('Vendedor'),
+                Tables\Columns\TextColumn::make('fecha_venta')->label('Fecha de compra')->sortable(),
+                Tables\Columns\TextColumn::make('vehicle.model')->label('Vehiculo comprado'),
+                Tables\Columns\TextColumn::make('total')->label('Total'),
             ])
             ->filters([
                 //
+
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()->hidden(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -58,7 +64,14 @@ class SaleResource extends Resource
         return [
             'index' => Pages\ListSales::route('/'),
             'create' => Pages\CreateSale::route('/create'),
-            'edit' => Pages\EditSale::route('/{record}/edit'),
+            // 'edit' => Pages\EditSale::route('/{record}/edit'),
         ];
     }
+
+    public static function getNavigationLabel(): string
+    {
+        return __('Ventas');
+    }
+
+
 }

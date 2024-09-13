@@ -13,7 +13,12 @@ class ListSellers extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()->label('Crear vendedor'),
         ];
+    }
+
+    public function getTitle(): string
+    {
+        return __('Lista de vendedores');
     }
 }

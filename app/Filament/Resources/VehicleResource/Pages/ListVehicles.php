@@ -13,7 +13,12 @@ class ListVehicles extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()->label('Crear vehiculo'),
         ];
+    }
+
+    public function getTitle(): string
+    {
+        return __('Lista de vehiculos');
     }
 }

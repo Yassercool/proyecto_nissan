@@ -10,7 +10,14 @@ class Vehicle extends Model
 {
     use HasFactory;
 
+
+    protected $fillable = [
+        'mark', 'model', 'year', 'value','quantity','image'
+    ];
+
     public function sales(): HasMany{
         return $this->hasMany(Sale::class);
     }
+
+
 }

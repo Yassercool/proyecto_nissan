@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => env('AUTH_GUARD', 'web'),
-        'passwords' => env('AUTH_PASSWORD_BROKER', 'users'),
+        'guard' => env('AUTH_GUARD', 'seller'),
+        'passwords' => env('AUTH_PASSWORD_BROKER', 'sellers'),
     ],
 
     /*
@@ -27,10 +27,6 @@ return [
     | Of course, a great default configuration has been defined for you
     | which utilizes session storage plus the Eloquent user provider.
     |
-    | All authentication guards have a user provider, which defines how the
-    | users are actually retrieved out of your database or other storage
-    | system used by the application. Typically, Eloquent is utilized.
-    |
     | Supported: "session"
     |
     */
@@ -38,6 +34,11 @@ return [
     'guards' => [
         'seller' => [
             'driver' => 'session',
+            'provider' => 'sellers',
+        ],
+
+        'api' => [
+            'driver' => 'token',
             'provider' => 'sellers',
         ],
     ],
@@ -62,7 +63,7 @@ return [
     'providers' => [
         'sellers' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\Seller::class),
+            'model' => App\Models\Seller::class,
         ],
 
         // 'users' => [
@@ -91,9 +92,9 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
-            'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
+        'sellers' => [
+            'provider' => 'sellers',
+            'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,
         ],
